@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>James Farrant — Talent Development &amp; Learning Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A41;
+    --paper:#F2F4F5;
+    --paper-alt:#FFFFFF;
+    --slate:#5B6B79;
+    --brass:#A9762F;
+    --line:#D8DEE3;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    font-size:17px;
+  }
+  h1,h2,h3{
+    font-family:'IBM Plex Serif', serif;
+    font-weight:500;
+    line-height:1.25;
+    margin:0 0 0.5em 0;
+  }
+  a{color:var(--brass); text-decoration:none;}
+  a:hover, a:focus{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--brass);
+    outline-offset:3px;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  .prose{max-width:var(--maxw);}
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(242,244,245,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:16px; padding-bottom:16px;
+  }
+  nav .brand{font-family:'IBM Plex Serif', serif; font-weight:600; font-size:1.05em;}
+  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  nav a{color:var(--ink); font-size:0.95em;}
+  nav a:hover{color:var(--brass);}
+
+  /* Hero */
+  .hero{
+    padding:96px 0 72px 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-position:center top;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+  .hero-inner{
+    background:var(--paper);
+  }
+  .hero h1{
+    font-size:clamp(2.1em, 5vw, 3.1em);
+    max-width:11ch;
+    opacity:0;
+    animation:rise 0.7s ease-out forwards;
+  }
+  .hero .role{
+    color:var(--slate);
+    font-size:1.15em;
+    max-width:44ch;
+    margin-bottom:1.4em;
+    opacity:0;
+    animation:rise 0.7s ease-out 0.12s forwards;
+  }
+  .hero .meta{
+    font-size:0.92em;
+    color:var(--slate);
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    opacity:0;
+    animation:rise 0.7s ease-out 0.22s forwards;
+  }
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-label{
+    font-size:0.85em;
+    color:var(--brass);
+    font-weight:600;
+    margin-bottom:6px;
+    display:block;
+  }
+
+  /* About */
+  .about p{color:var(--ink);}
+
+  /* Case studies */
+  .case{
+    border:1px solid var(--line);
+    background:var(--paper-alt);
+    padding:32px;
+    margin-bottom:24px;
+  }
+  .case:last-child{margin-bottom:0;}
+  .case h3{font-size:1.3em; margin-bottom:0.3em;}
+  .case .tag{
+    color:var(--slate); font-size:0.9em; margin-bottom:20px; display:block;
+  }
+  .pao{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:24px;
+    margin-top:20px;
+  }
+  @media (max-width:720px){
+    .pao{grid-template-columns:1fr;}
+  }
+  .pao div{border-left:2px solid var(--line); padding-left:16px;}
+  .pao h4{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.82em;
+    text-transform:none;
+    color:var(--brass);
+    font-weight:600;
+    margin:0 0 8px 0;
+  }
+  .pao p{margin:0; font-size:0.96em; color:var(--ink);}
+
+  /* Skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px 48px;
+  }
+  @media (max-width:720px){
+    .skills-grid{grid-template-columns:1fr;}
+  }
+  .skills-grid h3{font-size:1.05em; margin-bottom:12px;}
+  .skills-grid ul{margin:0; padding-left:0; list-style:none;}
+  .skills-grid li{
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+    font-size:0.96em;
+  }
+  .skills-grid li:last-child{border-bottom:none;}
+
+  /* Experience timeline */
+  .tl{border-left:2px solid var(--line); margin-left:6px;}
+  .tl-item{position:relative; padding:0 0 32px 28px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';
+    position:absolute; left:-7px; top:4px;
+    width:12px; height:12px;
+    background:var(--paper);
+    border:2px solid var(--brass);
+    border-radius:50%;
+  }
+  .tl-item .years{color:var(--slate); font-size:0.88em; margin-bottom:2px;}
+  .tl-item h3{font-size:1.1em; margin-bottom:4px;}
+  .tl-item p{margin:0; color:var(--ink); font-size:0.96em;}
+
+  /* Contact */
+  footer{
+    padding:56px 0 72px 0;
+  }
+  footer h2{margin-bottom:0.3em;}
+  .contact-list{
+    margin-top:20px;
+    font-size:1em;
+  }
+  .contact-list div{padding:6px 0;}
+  .fine{color:var(--slate); font-size:0.85em; margin-top:48px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">James Farrant</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Case Studies</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="wrap">
+      <h1>Building the systems behind learning.</h1>
+      <p class="role">Talent development and learning operations leader — LMS administration, security-aware training design, and the operational infrastructure that makes training programmes actually work.</p>
+      <p class="meta">
+        <span>Nishinomiya, Hyogo, Japan</span>
+        <span>·</span>
+        <span>Permanent Resident — no visa sponsorship required</span>
+        <span>·</span>
+        <span><a href="mailto:jamesfarrant1709@gmail.com">jamesfarrant1709@gmail.com</a></span>
+      </p>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap prose about">
+    <span class="section-label">About</span>
+    <h2>14+ years turning training gaps into working systems.</h2>
+    <p>I've spent my career at the intersection of instructional design, LMS administration, and process architecture — first as an instructor and instructional supervisor, then leading Talent Development at Berlitz Japan's headquarters. Along the way, I noticed the same pattern in every problem worth solving: someone needed a system, not just a document. So I built ticketing portals, security audits, automated reporting pipelines, and interactive training modules — usually before anyone asked me to.</p>
+    <p>I'm currently looking at roles where that instinct — closing gaps nobody assigned, and building the infrastructure that makes training stick — sits at the center of the job, not the edge of it.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <span class="section-label">Case Studies</span>
+    <h2 class="prose">A few problems I noticed, and what I built to close them.</h2>
+
+    <div style="margin-top:36px;">
+
+      <div class="case">
+        <h3>Stakeholder Ticketing Portal &amp; Department SOP</h3>
+        <span class="tag">Process design · Stakeholder communication</span>
+        <div class="pao">
+          <div>
+            <h4>Problem</h4>
+            <p>No consistent way for stakeholders to contact the department. Requests went untracked, and different people received different answers to the same question.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <p>Designed a ticketing portal with status tracking, filtering, and escalation, then authored the department's first Standard Operating Procedure — delivered as an interactive PDF and stored centrally.</p>
+          </div>
+          <div>
+            <h4>Outcome</h4>
+            <p>Requests now follow a traceable lifecycle from submission to resolution. The SOP is used daily by new staff and managers as the default reference.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <h3>Copyright &amp; Privacy Awareness Module</h3>
+        <span class="tag">Instructional design · Security-adjacent training</span>
+        <div class="pao">
+          <div>
+            <h4>Problem</h4>
+            <p>The sudden shift to online lesson delivery during COVID-19 introduced new risks — instructors screen-sharing licensed materials and exposing their home environments on camera — that most had never had to consider.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <p>Authored the script, slides, and assessment from source material, then used Adobe InDesign's digital publishing features to build a richer, more interactive self-study interface than the LMS could offer alone.</p>
+          </div>
+          <div>
+            <h4>Outcome</h4>
+            <p>A concrete, actionable awareness module that made an abstract risk tangible for a non-technical audience — deployed org-wide via SCORM.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <h3>Access Control &amp; Security Audit</h3>
+        <span class="tag">Governance · Risk reduction</span>
+        <div class="pao">
+          <div>
+            <h4>Problem</h4>
+            <p>SharePoint access was granted to individuals one by one — difficult to audit, and easy to lose track of as people changed roles.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <p>Learned SharePoint security groups from the ground up, applied them across departmental teams and sites, and made role-based, group-level access the mandatory standard.</p>
+          </div>
+          <div>
+            <h4>Outcome</h4>
+            <p>Auditable, consistent access control across all team data — closing a gap nobody had asked me to look at.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <span class="section-label">Skills &amp; Tools</span>
+    <h2 class="prose">What I bring to the systems behind training.</h2>
+    <div class="skills-grid" style="margin-top:32px;">
+      <div>
+        <h3>Operational &amp; Learning Systems</h3>
+        <ul>
+          <li>Needs assessment &amp; curriculum development</li>
+          <li>Role-based / segmented learning paths</li>
+          <li>ADDIE-principled curriculum design</li>
+          <li>Workshop facilitation, coaching &amp; evaluation</li>
+          <li>Security awareness &amp; technical training</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Digital Systems, Automation &amp; AI</h3>
+        <ul>
+          <li>Totara / Moodle administration</li>
+          <li>LMS reporting &amp; completion analytics</li>
+          <li>SCORM content development</li>
+          <li>SharePoint infrastructure &amp; security administration</li>
+          <li>AI-assisted content workflows</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap prose">
+    <span class="section-label">Experience</span>
+    <h2>Where this was built.</h2>
+    <div class="tl" style="margin-top:32px;">
+      <div class="tl-item">
+        <div class="years">2012 — Present</div>
+        <h3>Lead Specialist, Talent Development Team</h3>
+        <p>Berlitz Japan (HQ). Own end-to-end lifecycle of corporate training and talent development programmes — needs assessment through design, delivery, and evaluation.</p>
+      </div>
+      <div class="tl-item">
+        <div class="years">2003 — 2011</div>
+        <h3>Manager of Instruction / Instructor</h3>
+        <p>Berlitz Japan (Kyoto / Namba / Brighton, UK). Managed a team of up to 15 instructors and designed customised curricula for corporate, university, and individual clients.</p>
+      </div>
+      <div class="tl-item">
+        <div class="years">1991 — 2001</div>
+        <h3>Duty Manager / Night Shift Manager</h3>
+        <p>J. Sainsbury's PLC, UK. Progressed through six promotions managing 100–250 staff; grew store turnover by 250% as District Fish Advisor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap prose">
+    <span class="section-label">Contact</span>
+    <h2>Let's talk.</h2>
+    <p>I'm always happy to discuss learning systems, LMS infrastructure, or security-aware training design.</p>
+    <div class="contact-list">
+      <div>Email: <a href="mailto:jamesfarrant1709@gmail.com">jamesfarrant1709@gmail.com</a></div>
+      <div>Phone: 090-6060-2732</div>
+      <div>Location: Nishinomiya, Hyogo, Japan</div>
+    </div>
+    <p class="fine">Portfolio last updated August 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
